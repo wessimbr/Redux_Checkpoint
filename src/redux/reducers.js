@@ -1,5 +1,6 @@
 import * as actionTypes from './actions';
 
+
 const initialState = {
   tasks: [],
   filter: 'all',
@@ -38,6 +39,12 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         filter: action.payload.filter,
       };
+    case actionTypes.DELETE_TASK:
+      return {
+        ...state,
+        tasks: state.tasks.filter((task) => task.id !== action.payload.id),
+      };
+
     default:
       return state;
   }

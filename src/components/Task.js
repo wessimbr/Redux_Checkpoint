@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { toggleTask, editTask } from '../redux/actions';
+import { deleteTask } from '../redux/actions';
 
 const Task = ({ task }) => {
   const [isEditing, setIsEditing] = useState(false);
@@ -18,6 +19,10 @@ const Task = ({ task }) => {
     }
   };
 
+  const handleDelete = () => {
+    dispatch(deleteTask(task.id));
+  };
+
   return (
     <div className="task">
       <input type="checkbox" checked={task.isDone} onChange={handleToggle} />
@@ -30,14 +35,18 @@ const Task = ({ task }) => {
         </>
       ) : (
         <>
-          <span style={{fontSize:'20px'}}>{task.description}</span>
+          <span style={{ fontSize: '20px' }}>{task.description}</span>
           <button className="button" onClick={() => setIsEditing(true)}>
             Edit
+          </button>
+          <button className="button delete" onClick={handleDelete}>
+            Delete
           </button>
         </>
       )}
     </div>
   );
 };
+
 
 export default Task;
