@@ -9,10 +9,12 @@ const Task = ({ task }) => {
   const dispatch = useDispatch();
 
   const handleToggle = () => {
+    // Dispatches an action to toggle the completion status of the task.
     dispatch(toggleTask(task.id));
   };
 
   const handleEdit = () => {
+    //  Dispatches an action to edit the task if the edited content is not empty.
     if (editedTask.trim() !== '') {
       dispatch(editTask(task.id, editedTask));
       setIsEditing(false);
@@ -20,6 +22,7 @@ const Task = ({ task }) => {
   };
 
   const handleDelete = () => {
+    //  Dispatches an action to delete the task.
     dispatch(deleteTask(task.id));
   };
 
@@ -47,6 +50,5 @@ const Task = ({ task }) => {
     </div>
   );
 };
-
 
 export default Task;
